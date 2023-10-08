@@ -1,3 +1,4 @@
+import Modal from "@/components/Modal";
 import PriceInfoCard from "@/components/PriceInfoCard";
 import ProductCard from "@/components/ProductCard";
 import { getProductById, getSimilarProducts } from "@/lib/actions";
@@ -6,7 +7,6 @@ import { Product } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-
 
 type Props = {
   params: { id: string };
@@ -161,7 +161,8 @@ const ProductDetails = async ({ params: { id } }: Props) => {
               />
             </div>
           </div>
-          Modal
+
+          <Modal />
         </div>
       </div>
 
@@ -191,14 +192,13 @@ const ProductDetails = async ({ params: { id } }: Props) => {
       </div>
       {similarProducts && similarProducts?.length > 0 && (
         <div className="py-14 flex flex-col gap-2 w-full">
-            <p className="section-text">Similar Products</p>
+          <p className="section-text">Similar Products</p>
 
-            <div className="flex flex-wrap gap-10 mt-7 w-full">
-                {similarProducts.map((product)=>(
-                    <ProductCard key={product._id} product={product}/>
-                ))}
-
-            </div>
+          <div className="flex flex-wrap gap-10 mt-7 w-full">
+            {similarProducts.map((product) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
+          </div>
         </div>
       )}
     </div>
