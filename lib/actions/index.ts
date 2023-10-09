@@ -32,7 +32,7 @@ export async function scrapeAndStoreProduct(productUrl: string) {
         ...scrapedProduct,
         priceHistory: updatedPriceHistory,
         lowestPrice: getLowestPrice(updatedPriceHistory),
-        heighestPrice: getHighestPrice(updatedPriceHistory),
+        highestPrice: getHighestPrice(updatedPriceHistory),
         averagePrice: getAveragePrice(updatedPriceHistory),
       };
     }

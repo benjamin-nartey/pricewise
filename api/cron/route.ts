@@ -38,7 +38,7 @@ export async function Get() {
           ...scrapedProduct,
           priceHistory: updatedPriceHistory,
           lowestPrice: getLowestPrice(updatedPriceHistory),
-          heighestPrice: getHighestPrice(updatedPriceHistory),
+          highestPrice: getHighestPrice(updatedPriceHistory),
           averagePrice: getAveragePrice(updatedPriceHistory),
         };
 
