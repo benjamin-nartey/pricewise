@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 
-import { getLowestPrice, getHighestPrice, getAveragePrice, getEmailNotifType } from "@/lib/utils";
+import {
+  getLowestPrice,
+  getHighestPrice,
+  getAveragePrice,
+  getEmailNotifType,
+} from "@/lib/utils";
 import { connectToDB } from "@/lib/mongoose";
 import Product from "@/lib/models/product.models";
 import { scrapeAmazonProduct } from "@/lib/scraper";
@@ -10,7 +15,7 @@ export const maxDuration = 300; // This function can run for a maximum of 300 se
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
-export async function GET(request: Request) {
+export async function GET(request) {
   try {
     connectToDB();
 
@@ -61,9 +66,12 @@ export async function GET(request: Request) {
             url: updatedProduct.url,
           };
           // Construct emailContent
-          const emailContent = await generateEmailBody(productInfo, emailNotifType);
+          const emailContent = await generateEmailBody(
+            productInfo,
+            emailNotifType
+          );
           // Get array of user emails
-          const userEmails = updatedProduct.users.map((user: any) => user.email);
+          const userEmails = updatedProduct.users.map((user) => user.email);
           // Send email notification
           await sendEmail(emailContent, userEmails);
         }
@@ -76,7 +84,7 @@ export async function GET(request: Request) {
       message: "Ok",
       data: updatedProducts,
     });
-  } catch (error: any) {
+  } catch (error) {
     throw new Error(`Failed to get all products: ${error.message}`);
   }
 }
